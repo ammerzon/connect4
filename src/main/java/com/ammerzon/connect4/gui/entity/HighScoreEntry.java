@@ -1,4 +1,4 @@
-package com.ammerzon.connect4.gui.entitie;
+package com.ammerzon.connect4.gui.entity;
 
 public class HighScoreEntry {
     private String player1Username;

@@ -1,6 +1,6 @@
 package com.ammerzon.connect4.gui.view;
 
-import com.ammerzon.connect4.gui.entitie.HighScoreEntry;
+import com.ammerzon.connect4.gui.entity.HighScoreEntry;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContentDisplay;
