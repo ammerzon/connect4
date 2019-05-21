@@ -1,0 +1,89 @@
+<project name="connect4" default="compile" basedir=".">
+    <!-- Specify your main class here. Omit the .class extension. -->
+    <property name="main.class" value="com.ammerzon.connect4.gui.App"/>
+    <property name="jar.name" value="${ant.project.name}"/>
+
+    <property environment="env"/>
+    <property name="src.dir" value="${basedir}/src"/>
+    <property name="target.dir" value="${basedir}/bin"/>
+    <property name="test.dir" value="test"/>
+    <property name="build.dir" value="${basedir}/build"/>
+    <property name="jar.dir" value="${basedir}/jar"/>
+    <property name="local.lib.dir" value="${basedir}/lib"/>
+    <property name="user.lib.dir" value="${env.SWE4_HOME}/lib/junit"/>
+
+    <path id="libpath">
+        <fileset dir="${local.lib.dir}" erroronmissingdir="false">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${user.lib.dir}" erroronmissingdir="false">
+            <include name="junit*.jar"/>
+            <include name="hamcrest*.jar"/>
+        </fileset>
+    </path>
+
+    <path id="classpath">
+        <path refid="libpath"/>
+        <pathelement path="${target.dir}"/>
+    </path>
+
+    <target name="all" depends="clean,compile" description="Clean build and dist directories, then compile"/>
+
+    <target name="compile" description="Compile Java sources">
+        <mkdir dir="${target.dir}"/>
+        <javac includeantruntime="false" srcdir="${src.dir}" destdir="${target.dir}">
+            <include name="**/*.java"/>
+            <exclude name="${test.dir}/**/*.java"/>
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <target name="run" depends="compile,copy-resources" description="Run java application">
+        <java classname="${main.class}" fork="true">
+            <classpath refid="classpath"/>
+        </java>
+    </target>
+
+    <target name="copy-resources" description="Copy resource files">
+        <!--<copy todir="${target.dir}">
+            <fileset dir="${src.dir}" excludes="**/*.java"/>
+        </copy>-->
+        <copy todir="${target.dir}">
+            <fileset dir="${src.dir}/main/resources"/>
+        </copy>
+    </target>
+
+    <target name="create-jar" depends="compile,copy-resources" description="Package to java archive">
+        <jar destfile="${jar.dir}/${jar.name}" basedir="${target.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run-jar" depends="create-jar" description="Run java application in java archive">
+        <java jar="${jar.dir}/${jar.name}" fork="true">
+            <classpath refid="libpath"/>
+        </java>
+    </target>
+
+    <target name="clean" description="Delete old build and dist directories">
+        <delete dir="${target.dir}"/>
+        <delete dir="${build.dir}"/>
+        <delete dir="${jar.dir}"/>
+    </target>
+
+    <target name="run-unit-tests" depends="compile,copy-resources" description="Run all unit tests">
+        <junit printsummary="yes" haltonfailure="no">
+            <classpath refid="classpath"/>
+
+            <batchtest fork="yes">
+                <fileset dir="${src.dir}/main/java">
+                    <include name="**/*Test.java"/>
+                </fileset>
+                <formatter type="plain" usefile="false"/>
+            </batchtest>
+        </junit>
+    </target>
+
+</project>
