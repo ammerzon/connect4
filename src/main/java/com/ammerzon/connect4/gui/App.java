@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(LoginController.class.getResource("/GameModeView.fxml"));
+        FXMLLoader loader = new FXMLLoader(GameModeController.class.getResource("/GameModeView.fxml"));
         Parent root = loader.load();
         GameModeController controller = loader.getController();
         controller.setStage(primaryStage);

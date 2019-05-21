@@ -38,11 +38,7 @@ public class LoginController extends Controller implements Initializable {
 
     public void setGameMode(GameMode gameMode) {
         this.gameMode = gameMode;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        if (gameMode == GameMode.humanVsHuman) {
+        if (gameMode == GameMode.humanVsHuman || gameMode == GameMode.watch) {
             loginVBox.getChildren().remove(loginVBox);
             loginVBox.getChildren().remove(robotSettingsText);
             difficultyHBox.getChildren().remove(difficultyText);
@@ -53,7 +49,12 @@ public class LoginController extends Controller implements Initializable {
     }
 
     @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    }
+
+    @Override
     void loaded() {
+        super.loaded();
         stage.setTitle("Login");
     }
 

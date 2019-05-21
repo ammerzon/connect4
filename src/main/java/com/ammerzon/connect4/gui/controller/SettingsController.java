@@ -13,6 +13,12 @@ public class SettingsController extends Controller implements Initializable {
 
     }
 
+    @Override
+    void loaded() {
+        super.loaded();
+        stage.setTitle("Settings");
+    }
+
     public void saveClicked(MouseEvent mouseEvent) {
         stage.close();
     }

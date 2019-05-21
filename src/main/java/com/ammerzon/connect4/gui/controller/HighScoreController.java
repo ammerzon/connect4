@@ -32,4 +32,10 @@ public class HighScoreController extends Controller implements Initializable {
         highScoreList.setFocusTraversable(false);
         highScoreList.setCellFactory(param -> new HighScoreCell());
     }
+
+    @Override
+    void loaded() {
+        super.loaded();
+        stage.setTitle("High score");
+    }
 }
