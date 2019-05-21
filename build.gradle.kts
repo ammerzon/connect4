@@ -10,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    compile("com.jfoenix", "jfoenix", "8.0.8")
     testCompile("junit", "junit", "4.12")
 }
 
