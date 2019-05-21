@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="1080" prefWidth="1920" styleClass="cardContainer"
+          stylesheets="@styles/gameMode.css" xmlns="http://javafx.com/javafx/8.0.172-ea"
+          fx:controller="com.ammerzon.connect4.gui.controller.GameModeController">
+    <VBox styleClass="card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <ImageView pickOnBounds="true">
+            <Image url="@images/humanVsHuman.png"/>
+        </ImageView>
+        <Text styleClass="card__heading" text="Human vs. Human">
+            <VBox.margin>
+                <Insets left="15.0" top="30.0"/>
+            </VBox.margin>
+        </Text>
+        <Text styleClass="card__description" text="Two humans play against each other.">
+            <VBox.margin>
+                <Insets left="15.0" top="10.0"/>
+            </VBox.margin>
+        </Text>
+        <JFXButton onMouseClicked="#humanVsHumanClicked" styleClass="card__button" text="PLAY">
+            <VBox.margin>
+                <Insets bottom="20.0" left="15.0" top="30.0"/>
+            </VBox.margin>
+        </JFXButton>
+    </VBox>
+    <VBox styleClass="card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <ImageView pickOnBounds="true">
+            <Image url="@images/humanVsRobot.png"/>
+        </ImageView>
+        <Text styleClass="card__heading" text="Human vs. Robot">
+            <VBox.margin>
+                <Insets left="15.0" top="30.0"/>
+            </VBox.margin>
+        </Text>
+        <Text styleClass="card__description" text="You against the computer.">
+            <VBox.margin>
+                <Insets left="15.0" top="10.0"/>
+            </VBox.margin>
+        </Text>
+        <JFXButton onMouseClicked="#humanVsRobotClicked" styleClass="card__button" text="PLAY">
+            <VBox.margin>
+                <Insets bottom="20.0" left="15.0" top="30.0"/>
+            </VBox.margin>
+        </JFXButton>
+    </VBox>
+    <VBox styleClass="card" GridPane.columnIndex="2" GridPane.rowIndex="0">
+        <ImageView pickOnBounds="true">
+            <Image url="@images/robotVsRobot.png"/>
+        </ImageView>
+        <Text styleClass="card__heading" text="Robot vs. Robot">
+            <VBox.margin>
+                <Insets left="15.0" top="30.0"/>
+            </VBox.margin>
+        </Text>
+        <Text styleClass="card__description" text="Two robots against each other.">
+            <VBox.margin>
+                <Insets left="15.0" top="10.0"/>
+            </VBox.margin>
+        </Text>
+        <JFXButton onMouseClicked="#robotVsRobotClicked" styleClass="card__button" text="PLAY">
+            <VBox.margin>
+                <Insets bottom="20.0" left="15.0" top="30.0"/>
+            </VBox.margin>
+        </JFXButton>
+    </VBox>
+    <VBox styleClass="card" GridPane.columnIndex="3" GridPane.rowIndex="0">
+        <ImageView pickOnBounds="true">
+            <Image url="@images/viewer.png"/>
+        </ImageView>
+        <Text styleClass="card__heading" text="Watch">
+            <VBox.margin>
+                <Insets left="15.0" top="30.0"/>
+            </VBox.margin>
+        </Text>
+        <Text styleClass="card__description" text="Observe a match.">
+            <VBox.margin>
+                <Insets left="15.0" top="10.0"/>
+            </VBox.margin>
+        </Text>
+        <JFXButton onMouseClicked="#watchClicked" styleClass="card__button" text="PLAY">
+            <VBox.margin>
+                <Insets bottom="20.0" left="15.0" top="30.0"/>
+            </VBox.margin>
+        </JFXButton>
+    </VBox>
+    <columnConstraints>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+    </rowConstraints>
+</GridPane>

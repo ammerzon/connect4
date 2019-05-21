@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.highScore__title {
+    -fx-font-size: 40;
+    -fx-fill: #ffffff;
+    -fx-font-family: "Roboto Bold";
+}
+
+.highScore__list {
+    -fx-background-color: #f4f4f4;
+    -fx-border-style: none;
+}

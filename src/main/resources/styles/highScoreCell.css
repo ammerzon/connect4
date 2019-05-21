@@ -1,0 +1,14 @@
+.highScoreCell__bold {
+    -fx-font-size: 20;
+    -fx-font-family: "Roboto Bold";
+}
+
+.highScoreCell__little {
+    -fx-font-size: 15;
+    -fx-font-family: "Roboto";
+}
+
+.highScoreCell {
+    -fx-background-color: #f4f4f4;
+    -fx-border-style: none;
+}

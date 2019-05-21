@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.cardContainer {
+    -fx-alignment: center;
+    -fx-hgap: 60;
+}
+
+.card {
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.4), 10.0, 0, 0.0, 1.0);
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 23;
+}
+
+.card__button {
+    -fx-text-fill: #4d4d4d;
+    -fx-font-size: 14;
+    -jfx-button-type: FLAT;
+}
+
+.card__heading {
+    -fx-font-size: 24;
+    -fx-font-family: "Roboto";
+}
+
+.card__description {
+    -fx-font-size: 14;
+    -fx-fill: #00000080;
+    -fx-font-family: "Roboto";
+    -fx-padding: 20 0 120 0;
+}
