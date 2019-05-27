@@ -12,3 +12,32 @@
     -fx-background-color: #f4f4f4;
     -fx-border-style: none;
 }
+
+.jfx-list-cell-container {
+    -fx-alignment: center-left;
+}
+
+.jfx-list-cell-container > .label {
+    -fx-text-fill: BLACK;
+}
+
+.jfx-list-cell:odd:selected > .jfx-rippler > StackPane, .jfx-list-cell:even:selected > .jfx-rippler > StackPane {
+    -fx-background-color: rgba(0, 0, 255, 0.2);
+}
+
+.jfx-list-cell {
+    -fx-background-insets: 0.0;
+    -fx-text-fill: BLACK;
+}
+
+.jfx-list-cell:odd, .jfx-list-cell:even {
+    -fx-background-color: WHITE;
+}
+
+.jfx-list-cell:filled:hover {
+    -fx-text-fill: black;
+}
+
+.jfx-list-cell .jfx-rippler {
+    -jfx-rippler-fill: BLUE;
+}

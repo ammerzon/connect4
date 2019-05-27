@@ -40,14 +40,29 @@
                         <Insets left="80.0" top="10.0"/>
                     </VBox.margin>
                 </Text>
+                <Text text="Game settings">
+                    <VBox.margin>
+                        <Insets left="80.0" top="20.0"/>
+                    </VBox.margin>
+                </Text>
+                <JFXTextField promptText="Size" styleClass="loginForm__textfield">
+                    <VBox.margin>
+                        <Insets left="80.0" right="80.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextField>
                 <Text text="User details">
                     <VBox.margin>
                         <Insets left="80.0" top="20.0"/>
                     </VBox.margin>
                 </Text>
-                <JFXTextField promptText="Username" styleClass="loginForm__textfield">
+                <JFXTextField promptText="Player 1 username" styleClass="loginForm__textfield">
                     <VBox.margin>
-                        <Insets left="80.0" right="80.0" top="30.0"/>
+                        <Insets left="80.0" right="80.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextField>
+                <JFXTextField promptText="Player 2 username" styleClass="loginForm__textfield">
+                    <VBox.margin>
+                        <Insets left="80.0" right="80.0" top="10.0"/>
                     </VBox.margin>
                 </JFXTextField>
                 <Text text="Engine details">
@@ -57,12 +72,12 @@
                 </Text>
                 <JFXTextField promptText="IP-Address" styleClass="loginForm__textfield">
                     <VBox.margin>
-                        <Insets left="80.0" right="80.0" top="20.0"/>
+                        <Insets left="80.0" right="80.0" top="10.0"/>
                     </VBox.margin>
                 </JFXTextField>
                 <JFXTextField promptText="Port" styleClass="loginForm__textfield">
                     <VBox.margin>
-                        <Insets left="80.0" right="80.0" top="30.0"/>
+                        <Insets left="80.0" right="80.0" top="10.0"/>
                     </VBox.margin>
                 </JFXTextField>
                 <Text fx:id="robotSettingsText" text="Robot settings">
@@ -76,9 +91,9 @@
                             <Insets/>
                         </HBox.margin>
                     </Text>
-                    <JFXSlider fx:id="difficultySlider" blockIncrement="1" max="5" min="1" prefHeight="38.0"
+                    <JFXSlider fx:id="difficultySlider" blockIncrement="1" max="3" min="1" prefHeight="38.0"
                                prefWidth="311.0" showTickLabels="true" showTickMarks="true"
-                               styleClass="loginForm__slider" value="2">
+                               styleClass="loginForm__slider" value="1">
                         <HBox.margin>
                             <Insets left="10.0"/>
                         </HBox.margin>
