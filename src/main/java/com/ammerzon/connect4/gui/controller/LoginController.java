@@ -93,7 +93,11 @@ public class LoginController extends BaseController implements Initializable {
         IntegerValidator integerValidator = new IntegerValidator("Input must be a number!");
         integerValidator.setIcon(warnIcon);
 
-        sizeTextField.getValidators().addAll(requiredFieldValidator, integerValidator);
+        RegexValidator regexValidator = new RegexValidator("Input must be between 4 and 8!");
+        regexValidator.setRegexPattern("[4-8]");
+        regexValidator.setIcon(warnIcon);
+
+        sizeTextField.getValidators().addAll(requiredFieldValidator, integerValidator, regexValidator);
         sizeTextField.focusedProperty().addListener((o, oldVal, newVal) -> {
             if (!newVal) {
                 sizeTextFieldValidProperty.set(sizeTextField.validate());

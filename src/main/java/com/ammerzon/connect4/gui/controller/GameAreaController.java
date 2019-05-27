@@ -26,11 +26,11 @@ public class GameAreaController extends BaseController implements Initializable 
     @FXML
     public GridPane fieldGridPane;
 
-    private int size = 6;
-    private int padding = 5;
-    private int circlePadding = 6;
-    private Color player1Color = Color.valueOf("#F4C77D");
-    private Color player2Color = Color.valueOf("#E44E60");
+    private int size = LocalEngine.getInstance().getSize();
+    private static final int PADDING = 5;
+    private static final int CIRCLE_PADDING = 6;
+    private static final Color PLAYER_1_COLOR = Color.valueOf("#F4C77D");
+    private static final Color PLAYER_2_COLOR = Color.valueOf("#E44E60");
     private GameState gameState = GameState.TURN_PLAYER_1;
     private int[][] field = new int[size][size];
 
@@ -58,7 +58,7 @@ public class GameAreaController extends BaseController implements Initializable 
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                Circle circle = new Circle(getCellSize() / 2 - circlePadding);
+                Circle circle = new Circle(getCellSize() / 2 - CIRCLE_PADDING);
                 circle.setFill(Color.WHITE);
                 circle.setEffect(new DropShadow(BlurType.GAUSSIAN, Color.valueOf("#00000024"), 10.0, 0.0, -1, -2));
                 int col = j;
@@ -97,20 +97,34 @@ public class GameAreaController extends BaseController implements Initializable 
         openNewWindow(HighScoreController.class, 900, 600);
     }
 
-    public void gameAreaGridPaneClicked(int colIndex) {
+    private void gameAreaGridPaneClicked(int colIndex) {
         if (field[0][colIndex] == 0) {
-            Circle circle = new Circle(getCellSize() / 2 - circlePadding);
+            Circle circle = new Circle(getCellSize() / 2 - CIRCLE_PADDING);
             int rowIndex = getFirstPossibleRowIndex(colIndex);
             if (gameState == GameState.TURN_PLAYER_1) {
-                circle.setFill(player1Color);
+                circle.setFill(PLAYER_1_COLOR);
                 field[rowIndex][colIndex] = 1;
                 gameState = GameState.TURN_PLAYER_2;
             } else {
-                circle.setFill(player2Color);
+                circle.setFill(PLAYER_2_COLOR);
                 field[rowIndex][colIndex] = 2;
                 gameState = GameState.TURN_PLAYER_1;
             }
             fieldGridPane.add(circle, colIndex, rowIndex);
         }
     }
+
+    private double getCellSize() {
+        double width = fieldGridPane.getPrefWidth();
+        return width / size - PADDING;
 }
+
+    private int getFirstPossibleRowIndex(int colIndex) {
+        for (int i = size - 1; i >= 0; i--) {
+            if (field[i][colIndex] == 0) {
+                return i;
+            }
+        }
+
+        return 0;
+    }
