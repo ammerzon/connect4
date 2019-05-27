@@ -45,9 +45,6 @@
     </target>
 
     <target name="copy-resources" description="Copy resource files">
-        <!--<copy todir="${target.dir}">
-            <fileset dir="${src.dir}" excludes="**/*.java"/>
-        </copy>-->
         <copy todir="${target.dir}">
             <fileset dir="${src.dir}/main/resources"/>
         </copy>
