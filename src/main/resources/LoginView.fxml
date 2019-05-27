@@ -45,39 +45,34 @@
                         <Insets left="80.0" top="20.0"/>
                     </VBox.margin>
                 </Text>
-                <JFXTextField promptText="Size" styleClass="loginForm__textfield">
+                <JFXTextField fx:id="sizeTextField" styleClass="loginForm__textfield">
                     <VBox.margin>
                         <Insets left="80.0" right="80.0" top="10.0"/>
                     </VBox.margin>
                 </JFXTextField>
                 <Text text="User details">
                     <VBox.margin>
-                        <Insets left="80.0" top="20.0"/>
+                        <Insets left="80.0" top="30.0"/>
                     </VBox.margin>
                 </Text>
-                <JFXTextField promptText="Player 1 username" styleClass="loginForm__textfield">
-                    <VBox.margin>
-                        <Insets left="80.0" right="80.0" top="10.0"/>
-                    </VBox.margin>
-                </JFXTextField>
-                <JFXTextField promptText="Player 2 username" styleClass="loginForm__textfield">
+                <JFXTextField fx:id="usernameTextField" promptText="Username" styleClass="loginForm__textfield">
                     <VBox.margin>
                         <Insets left="80.0" right="80.0" top="10.0"/>
                     </VBox.margin>
                 </JFXTextField>
                 <Text text="Engine details">
                     <VBox.margin>
-                        <Insets left="80.0" top="20.0"/>
+                        <Insets left="80.0" top="30.0"/>
                     </VBox.margin>
                 </Text>
-                <JFXTextField promptText="IP-Address" styleClass="loginForm__textfield">
+                <JFXTextField fx:id="ipAddressTextField" promptText="IP-Address" styleClass="loginForm__textfield">
                     <VBox.margin>
                         <Insets left="80.0" right="80.0" top="10.0"/>
                     </VBox.margin>
                 </JFXTextField>
-                <JFXTextField promptText="Port" styleClass="loginForm__textfield">
+                <JFXTextField fx:id="portTextField" promptText="Port" styleClass="loginForm__textfield">
                     <VBox.margin>
-                        <Insets left="80.0" right="80.0" top="10.0"/>
+                        <Insets left="80.0" right="80.0" top="20.0"/>
                     </VBox.margin>
                 </JFXTextField>
                 <Text fx:id="robotSettingsText" text="Robot settings">
@@ -120,7 +115,7 @@
                     </VBox.margin>
                 </HBox>
                 <HBox alignment="CENTER">
-                    <JFXButton onMouseClicked="#connectClicked" styleClass="loginForm__button" text="CONNECT">
+                    <JFXButton fx:id="connectButton" onMouseClicked="#connectClicked" styleClass="loginForm__button" text="CONNECT">
                         <HBox.margin>
                             <Insets bottom="20.0"/>
                         </HBox.margin>
