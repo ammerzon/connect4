@@ -2,6 +2,7 @@ package com.ammerzon.connect4.gui.controller;
 
 import com.ammerzon.connect4.gui.entity.HighScoreEntry;
 import com.ammerzon.connect4.gui.view.HighScoreCell;
+import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,9 +12,9 @@ import javafx.scene.control.ListView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HighScoreController extends Controller implements Initializable {
+public class HighScoreController extends BaseController implements Initializable {
     @FXML
-    public ListView<HighScoreEntry> highScoreList;
+    public JFXListView<HighScoreEntry> highScoreList;
 
     private ObservableList<HighScoreEntry> highScoreEntries = FXCollections.observableArrayList();
 
@@ -28,8 +29,8 @@ public class HighScoreController extends Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         highScoreList.setItems(highScoreEntries);
-        highScoreList.setMouseTransparent(true);
-        highScoreList.setFocusTraversable(false);
+        highScoreList.depthProperty().set(1);
+        highScoreList.setExpanded(true);
         highScoreList.setCellFactory(param -> new HighScoreCell());
     }
 

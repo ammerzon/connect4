@@ -17,7 +17,7 @@ import javafx.scene.shape.Circle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GameAreaController extends Controller implements Initializable {
+public class GameAreaController extends BaseController implements Initializable {
 
     @FXML
     public Label currentPlayerLabel;

@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-abstract class Controller {
+abstract class BaseController {
     Stage stage;
 
     public Stage getStage() {
@@ -21,7 +21,7 @@ abstract class Controller {
     }
 
     Object openWindow(Class<?> clazz) {
-        Controller controller = null;
+        BaseController controller = null;
 
         try {
             FXMLLoader loader = new FXMLLoader(clazz.getResource("/" + clazz.getSimpleName().replaceAll("Controller", "View") + ".fxml"));
@@ -46,7 +46,7 @@ abstract class Controller {
     }
 
     Object openNewWindow(Class<?> clazz, int width, int heigth) {
-        Controller controller = null;
+        BaseController controller = null;
 
         try {
             FXMLLoader loader = new FXMLLoader(clazz.getResource("/" + clazz.getSimpleName().replaceAll("Controller", "View") + ".fxml"));

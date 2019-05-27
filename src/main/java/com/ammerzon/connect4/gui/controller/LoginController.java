@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginController extends Controller implements Initializable {
+public class LoginController extends BaseController implements Initializable {
     @FXML
     public VBox loginVBox;
     @FXML
