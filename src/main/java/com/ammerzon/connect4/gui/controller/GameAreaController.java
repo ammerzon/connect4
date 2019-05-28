@@ -58,6 +58,7 @@ public class GameAreaController extends BaseController implements Initializable,
     private SimpleBooleanProperty gameRunning = new SimpleBooleanProperty(false);
     private Timeline timeline = new Timeline();
     private long timeoutStart;
+    private boolean winnerDialogShown = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -108,6 +109,8 @@ public class GameAreaController extends BaseController implements Initializable,
 
     @FXML
     public void restartButtonClicked(ActionEvent actionEvent) {
+        winnerDialogShown = false;
+        engine.restart();
     }
 
     @FXML
@@ -131,8 +134,11 @@ public class GameAreaController extends BaseController implements Initializable,
             });
         } else {
             Platform.runLater(() -> {
-                showWinnerDialog(status);
-                timeline.stop();
+                if (!winnerDialogShown) {
+                    showWinnerDialog(status);
+                    timeline.stop();
+                    winnerDialogShown = true;
+                }
             });
         }
     }

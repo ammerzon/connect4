@@ -25,4 +25,6 @@ public interface Engine {
     int nextId();
 
     void start(Player sender);
+
+    void restart();
 }

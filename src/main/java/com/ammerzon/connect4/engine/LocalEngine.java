@@ -72,6 +72,16 @@ public class LocalEngine implements Engine {
     }
 
     @Override
+    public void restart() {
+        List<Player> players = status.getPlayers();
+        status = new GameStatus(status.getGameMode(), new Board(size), System.currentTimeMillis());
+        status.getPlayers().addAll(players);
+        status.setCurrentPlayer(players.get(0));
+        hasEnded = false;
+        notifyClients();
+    }
+
+    @Override
     public void save() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PATH))) {
             oos.writeObject(status);
