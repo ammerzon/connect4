@@ -1,10 +1,13 @@
 package com.ammerzon.connect4.engine.clients;
 
+import com.ammerzon.connect4.engine.Board;
 import com.ammerzon.connect4.engine.Draw;
 import com.ammerzon.connect4.engine.GameStatus;
 import com.ammerzon.connect4.engine.contracts.Client;
 import com.ammerzon.connect4.engine.contracts.Engine;
 import com.ammerzon.connect4.engine.contracts.Player;
+
+import java.util.Random;
 
 public class Robot implements Client, Player {
 
@@ -52,7 +55,7 @@ public class Robot implements Client, Player {
             Runnable drawCalculation = new Runnable() {
                 @Override
                 public void run() {
-                    Draw draw = calculateNewDraw(status.getBoard().getFieldCopy());
+                    Draw draw = calculateNewDraw(status.getBoard());
                     sendDraw(draw);
                 }
             };
@@ -69,16 +72,19 @@ public class Robot implements Client, Player {
         return time;
     }
 
-    private Draw calculateNewDraw(int[][] field) {
+    private Draw calculateNewDraw(Board board) {
+        Random random = new Random();
+        int[][] field = board.getFieldCopy();
+        boolean hasSet = false;
+        int col = 0;
 
-        for (int row = 0; row < field.length; row++) {
-            for (int col = 0; col < field[row].length; col++) {
-                if (field[row][col] != 0 && row - 1 >= 0) {
-                    return new Draw(col, row - 1);
-                }
+        while (!hasSet) {
+            col = random.nextInt(field.length);
+            if (field[col][0] == Board.DEFAULT_VAL) {
+                hasSet = true;
             }
         }
 
-        return new Draw(0, 0);
+        return new Draw(col, board.getFirstPossibleRowIndex(col));
     }
 }

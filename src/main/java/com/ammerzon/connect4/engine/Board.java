@@ -42,6 +42,16 @@ public class Board implements Serializable {
         return currentBoardStatus;
     }
 
+    public int getFirstPossibleRowIndex(int colIndex) {
+        for (int i = field.length - 1; i >= 0; i--) {
+            if (field[i][colIndex] == 0) {
+                return i;
+            }
+        }
+
+        return 0;
+    }
+
     private void updateBoardStatus() {
         for (int row = field.length - 1; row >= 0; row--) {
             for (int col = 0; col < field[row].length; col++) {
