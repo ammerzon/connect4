@@ -5,7 +5,6 @@ import com.ammerzon.connect4.engine.contracts.Engine;
 import com.ammerzon.connect4.engine.contracts.Player;
 import com.ammerzon.connect4.engine.exceptions.BoardException;
 import com.ammerzon.connect4.gui.helper.GameMode;
-import com.ammerzon.connect4.gui.helper.GameState;
 
 import java.io.*;
 import java.util.ArrayList;

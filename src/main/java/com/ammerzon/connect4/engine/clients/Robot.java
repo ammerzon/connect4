@@ -72,6 +72,12 @@ public class Robot implements Client, Player {
         return time;
     }
 
+    /**
+     * Generates a new randomly generated draw.
+     *
+     * @param board The board.
+     * @return The new draw.
+     */
     private Draw calculateNewDraw(Board board) {
         Random random = new Random();
         int[][] field = board.getFieldCopy();
