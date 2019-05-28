@@ -3,14 +3,18 @@ package com.ammerzon.connect4.engine.clients;
 import com.ammerzon.connect4.engine.Draw;
 import com.ammerzon.connect4.engine.GameStatus;
 import com.ammerzon.connect4.engine.contracts.Client;
+import com.ammerzon.connect4.engine.contracts.Engine;
+import com.ammerzon.connect4.engine.contracts.Player;
 
-public class Player implements Client {
+public class GUIPlayer implements Client, Player {
     private String name;
     private int id;
+    private Engine engine;
 
-    public Player(String name, int id) {
+    public GUIPlayer(Engine engine, String name) {
+        this.engine = engine;
         this.name = name;
-        this.id = id;
+        this.id = engine.nextId();
     }
 
     @Override
@@ -25,11 +29,10 @@ public class Player implements Client {
 
     @Override
     public void sendDraw(Draw draw) {
-
+        engine.receive(this, draw);
     }
 
     @Override
     public void receive(GameStatus status) {
-
     }
 }

@@ -2,6 +2,7 @@ package com.ammerzon.connect4.engine;
 
 import com.ammerzon.connect4.engine.contracts.Client;
 import com.ammerzon.connect4.engine.contracts.Engine;
+import com.ammerzon.connect4.engine.contracts.Player;
 import com.ammerzon.connect4.engine.exceptions.BoardException;
 
 import java.util.ArrayList;
@@ -16,8 +17,10 @@ public class LocalEngine implements Engine {
 
     private int size = INITIAL_SIZE;
     private List<Client> clients = new ArrayList<>();
+    private List<Player> players = new ArrayList<>(2);
     private Board board = null;
-    private Client currentClient;
+    private Player currentPlayer;
+    private int assignedIds = 0;
 
     private LocalEngine() {
     }
@@ -46,14 +49,16 @@ public class LocalEngine implements Engine {
     }
 
     @Override
-    public void receive(Client sender, Draw draw) {
-        try {
-            board.setTile(draw.getRow(), draw.getColumn(), sender.getId());
-        } catch (BoardException e) {
-            LOGGER.severe("Wrong client id sent!");
-            e.printStackTrace();
+    public void receive(Player sender, Draw draw) {
+        if (!draw.isTimeout()) {
+            try {
+                board.setTile(draw.getRow(), draw.getColumn(), sender.getId());
+            } catch (BoardException e) {
+                LOGGER.severe("Wrong client id sent!");
+                e.printStackTrace();
+            }
         }
-        currentClient = sender;
+        currentPlayer = players.stream().filter(i -> i.getId() != sender.getId()).findFirst().get();
         notifyClients();
     }
 
@@ -64,12 +69,36 @@ public class LocalEngine implements Engine {
 
     @Override
     public boolean register(Client client) {
+        if (client instanceof Player) {
+            players.add((Player) client);
+        }
         return clients.add(client);
     }
 
     @Override
     public void notifyClients() {
-        GameStatus state = new GameStatus(currentClient, board);
-        clients.stream().filter(i -> i.getId() != currentClient.getId()).forEach(i -> i.receive(state));
+        for (Client client : clients) {
+            GameStatus state = new GameStatus(currentPlayer, board, System.currentTimeMillis());
+            client.receive(state);
+        }
+    }
+
+    @Override
+    public int nextId() {
+        if (assignedIds == 0) {
+            assignedIds++;
+            return Board.PLAYER1_KEY;
+        } else if (assignedIds == 1) {
+            assignedIds++;
+            return Board.PLAYER2_KEY;
+        } else {
+            return -1;
+        }
+    }
+
+    @Override
+    public void start(Player sender) {
+        currentPlayer = sender;
+        notifyClients();
     }
 }

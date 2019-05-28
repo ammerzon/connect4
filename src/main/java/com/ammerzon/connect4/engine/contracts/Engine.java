@@ -8,11 +8,15 @@ public interface Engine {
 
     Board initializeBoard(int size);
 
-    void receive(Client sender, Draw draw);
+    void receive(Player sender, Draw draw);
 
     void save();
 
     boolean register(Client client);
 
     void notifyClients();
+
+    int nextId();
+
+    void start(Player sender);
 }

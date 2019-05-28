@@ -4,5 +4,5 @@ public enum BoardStatus {
     PLAYER1_WON,
     PLAYER2_WON,
     TIE,
-    UNKNOWN
+    RUNNING
 }

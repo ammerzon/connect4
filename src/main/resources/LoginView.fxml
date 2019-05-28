@@ -40,7 +40,7 @@
                         <Insets left="80.0" top="10.0"/>
                     </VBox.margin>
                 </Text>
-                <Text text="Game settings">
+                <Text fx:id="gameSettingsText" text="Game settings">
                     <VBox.margin>
                         <Insets left="80.0" top="20.0"/>
                     </VBox.margin>

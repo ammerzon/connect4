@@ -64,7 +64,7 @@
     <!-- Right side -->
     <GridPane alignment="CENTER" styleClass="gameArea__displayContainer" vgap="30.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <StackPane GridPane.columnIndex="0" GridPane.rowIndex="0">
-            <JFXButton onAction="#playButtonClicked" styleClass="gameArea__playButton" text=" ">
+            <JFXButton fx:id="playButton" onAction="#playButtonClicked" styleClass="gameArea__playButton" text=" ">
             </JFXButton>
             <ImageView>
                 <Image url="@images/play.png" />
@@ -72,7 +72,7 @@
         </StackPane>
 
         <StackPane GridPane.columnIndex="1" GridPane.rowIndex="0">
-            <JFXButton onAction="#stopButtonClicked" styleClass="gameArea__stopButton" text=" ">
+            <JFXButton fx:id="stopButton" onAction="#stopButtonClicked" styleClass="gameArea__stopButton" text=" ">
             </JFXButton>
             <ImageView>
                 <Image url="@images/stop.png" />
@@ -80,7 +80,7 @@
         </StackPane>
 
         <StackPane GridPane.columnIndex="2" GridPane.rowIndex="0">
-            <JFXButton onAction="#restartButtonClicked" styleClass="gameArea__restartButton" text=" ">
+            <JFXButton fx:id="restartButton" onAction="#restartButtonClicked" styleClass="gameArea__restartButton" text=" ">
             </JFXButton>
             <ImageView>
                 <Image url="@images/restart.png" />
