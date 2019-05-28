@@ -1,7 +1,6 @@
 package com.ammerzon.connect4.gui;
 
 import com.ammerzon.connect4.gui.controller.GameModeController;
-import com.ammerzon.connect4.gui.controller.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,5 +19,6 @@ public class App extends Application {
         primaryStage.setTitle("Game Mode Selection");
         primaryStage.setScene(scene);
         primaryStage.show();
+        controller.checkSaveGame();
     }
 }

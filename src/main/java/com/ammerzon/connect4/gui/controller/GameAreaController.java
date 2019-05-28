@@ -96,9 +96,7 @@ public class GameAreaController extends BaseController implements Initializable,
 
     @FXML
     public void playButtonClicked(ActionEvent actionEvent) {
-        engine.start(player);
-        timeline.play();
-        gameRunning.set(true);
+        startEngine();
     }
 
     @FXML
@@ -130,6 +128,7 @@ public class GameAreaController extends BaseController implements Initializable,
             renderBoard();
         } else {
             showWinnerDialog(status);
+            timeline.stop();
         }
     }
 
@@ -138,12 +137,18 @@ public class GameAreaController extends BaseController implements Initializable,
         playButton.disableProperty().bind(gameRunning);
     }
 
+    public void startEngine() {
+        engine.start(player);
+        timeline.play();
+        gameRunning.set(true);
+    }
+
     private void gameAreaGridPaneClicked(int colIndex) {
         if (board[0][colIndex] == Board.DEFAULT_VAL && gameRunning.getValue()) {
             Circle circle = new Circle(getCellSize() / 2 - CIRCLE_PADDING);
             int rowIndex = getFirstPossibleRowIndex(colIndex);
             if (player == null) {
-                // TODO: will be implemented in other game modes
+                // TODO: remove in the next exercises
                 if (gameState == GameState.TURN_PLAYER_1) {
                     circle.setFill(PLAYER_1_COLOR);
                     board[rowIndex][colIndex] = 1;
@@ -185,12 +190,15 @@ public class GameAreaController extends BaseController implements Initializable,
         StringBuilder sb = new StringBuilder();
         sb.append("Player ");
         if (status.getBoard().getStatus() == BoardStatus.PLAYER1_WON) {
-            sb.append("1");
+            sb.append(status.getPlayers().get(0).getName()).append(" has won!");
         } else if (status.getBoard().getStatus() == BoardStatus.PLAYER2_WON) {
-            sb.append("2");
+            sb.append(status.getPlayers().get(1).getName()).append(" has won!");
+        } else {
+            sb.setLength(0);
+            sb.append("No player has won! Tie!");
         }
-        sb.append(" has won!");
 
+        layout.setHeading(new Label("Game finished!"));
         layout.setBody(new Label(sb.toString()));
         JFXAlert<Void> alert = new JFXAlert<>(stage);
         alert.setOverlayClose(true);

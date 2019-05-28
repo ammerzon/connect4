@@ -2,7 +2,9 @@ package com.ammerzon.connect4.engine.contracts;
 
 import com.ammerzon.connect4.engine.Draw;
 
-public interface Player {
+import java.io.Serializable;
+
+public interface Player extends Serializable {
     int getId();
 
     String getName();

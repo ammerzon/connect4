@@ -4,7 +4,6 @@ import com.ammerzon.connect4.engine.LocalEngine;
 import com.ammerzon.connect4.engine.clients.GUIPlayer;
 import com.ammerzon.connect4.engine.clients.Robot;
 import com.ammerzon.connect4.engine.contracts.Engine;
-import com.ammerzon.connect4.engine.contracts.Player;
 import com.ammerzon.connect4.gui.helper.GameMode;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
@@ -130,11 +129,10 @@ public class LoginController extends BaseController implements Initializable {
     @FXML
     public void connectClicked(MouseEvent mouseEvent) {
         Engine engine = LocalEngine.getInstance();
-        engine.initializeBoard(Integer.parseInt(sizeTextField.getText()));
+        engine.initializeBoard(Integer.parseInt(sizeTextField.getText()), gameMode);
 
         if (gameMode == GameMode.humanVsRobot) {
             GUIPlayer guiPlayer = new GUIPlayer(engine, usernameTextField.getText());
-            // TODO implement random names
             Robot robot = new Robot(engine, "R2-D2", (int) difficultySlider.getValue(), (int) timeSlider.getValue());
             engine.register(guiPlayer);
             engine.register(robot);
@@ -142,6 +140,7 @@ public class LoginController extends BaseController implements Initializable {
             GameAreaController areaController = (GameAreaController) openWindow(GameAreaController.class);
             areaController.setPlayer(guiPlayer);
         } else {
+            // TODO support other game modes
             openWindow(GameAreaController.class);
         }
     }

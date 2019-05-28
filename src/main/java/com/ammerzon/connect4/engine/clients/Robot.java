@@ -1,6 +1,5 @@
 package com.ammerzon.connect4.engine.clients;
 
-import com.ammerzon.connect4.engine.Board;
 import com.ammerzon.connect4.engine.Draw;
 import com.ammerzon.connect4.engine.GameStatus;
 import com.ammerzon.connect4.engine.contracts.Client;
@@ -8,7 +7,9 @@ import com.ammerzon.connect4.engine.contracts.Engine;
 import com.ammerzon.connect4.engine.contracts.Player;
 
 public class Robot implements Client, Player {
-    private Engine engine;
+
+    private static final long serialVersionUID = 2925446995481765691L;
+    private transient Engine engine;
     private String name;
     private int difficulty;
     private int time;
@@ -51,6 +52,14 @@ public class Robot implements Client, Player {
             Draw draw = calculateNewDraw(status.getBoard().getFieldCopy());
             sendDraw(draw);
         }
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public int getTime() {
+        return time;
     }
 
     private Draw calculateNewDraw(int[][] field) {

@@ -7,9 +7,11 @@ import com.ammerzon.connect4.engine.contracts.Engine;
 import com.ammerzon.connect4.engine.contracts.Player;
 
 public class GUIPlayer implements Client, Player {
+
+    private static final long serialVersionUID = -5676636618076899125L;
     private String name;
     private int id;
-    private Engine engine;
+    private transient Engine engine;
 
     public GUIPlayer(Engine engine, String name) {
         this.engine = engine;
