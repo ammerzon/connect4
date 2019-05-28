@@ -49,8 +49,15 @@ public class Robot implements Client, Player {
     @Override
     public void receive(GameStatus status) {
         if (status.getCurrentPlayer().getId() == id) {
-            Draw draw = calculateNewDraw(status.getBoard().getFieldCopy());
-            sendDraw(draw);
+            Runnable drawCalculation = new Runnable() {
+                @Override
+                public void run() {
+                    Draw draw = calculateNewDraw(status.getBoard().getFieldCopy());
+                    sendDraw(draw);
+                }
+            };
+            Thread t = new Thread(drawCalculation);
+            t.start();
         }
     }
 
@@ -63,6 +70,7 @@ public class Robot implements Client, Player {
     }
 
     private Draw calculateNewDraw(int[][] field) {
+
         for (int row = 0; row < field.length; row++) {
             for (int col = 0; col < field[row].length; col++) {
                 if (field[row][col] != 0 && row - 1 >= 0) {

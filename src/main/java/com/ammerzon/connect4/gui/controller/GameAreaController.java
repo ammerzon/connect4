@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialogLayout;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -117,18 +118,22 @@ public class GameAreaController extends BaseController implements Initializable,
     @Override
     public void receive(GameStatus status) {
         if (status.getBoard().getStatus() == BoardStatus.RUNNING) {
-            currentPlayerLabel.setText(status.getCurrentPlayer().getName());
+            Platform.runLater(() -> {
+                currentPlayerLabel.setText(status.getCurrentPlayer().getName());
 
-            if (status.getCurrentPlayer().getId() == player.getId()) {
-                fieldGridPane.disableProperty().setValue(false);
-            }
+                if (status.getCurrentPlayer().getId() == player.getId()) {
+                    fieldGridPane.disableProperty().setValue(false);
+                }
 
-            board = status.getBoard().getFieldCopy();
-            timeoutStart = status.getTimeoutStart();
-            renderBoard();
+                board = status.getBoard().getFieldCopy();
+                timeoutStart = status.getTimeoutStart();
+                renderBoard();
+            });
         } else {
-            showWinnerDialog(status);
-            timeline.stop();
+            Platform.runLater(() -> {
+                showWinnerDialog(status);
+                timeline.stop();
+            });
         }
     }
 
