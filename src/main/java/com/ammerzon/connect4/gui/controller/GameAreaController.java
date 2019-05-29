@@ -146,6 +146,7 @@ public class GameAreaController extends BaseController implements Initializable,
     public void setPlayer(GUIPlayer player) {
         this.player = player;
         playButton.disableProperty().bind(gameRunning);
+        currentPlayerLabel.setText(player.getName());
     }
 
     public void startEngine() {

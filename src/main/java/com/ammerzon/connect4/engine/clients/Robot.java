@@ -55,6 +55,11 @@ public class Robot implements Client, Player {
             Runnable drawCalculation = new Runnable() {
                 @Override
                 public void run() {
+                    try {
+                        Thread.sleep(time * 1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     Draw draw = calculateNewDraw(status.getBoard());
                     sendDraw(draw);
                 }
