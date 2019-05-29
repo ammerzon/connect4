@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     compile("com.jfoenix", "jfoenix", "8.0.8")
+    compile("com.airhacks", "afterburner.fx", "1.7.0")
     testCompile("junit", "junit", "4.12")
 }
 
