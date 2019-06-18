@@ -66,7 +66,8 @@
     </target>
 
     <target name="create-server-jar" depends="compile,copy-resources" description="Package to java archive">
-        <jar destfile="${jar.dir}/${server-jar.name}" basedir="${target.dir}">
+        <jar destfile="${jar.dir}/${server-jar.name}.jar" basedir="${target.dir}">
+            <zipgroupfileset dir="${local.lib.dir}" includes="*.jar"/>
             <manifest>
                 <attribute name="Main-Class" value="${server-main.class}"/>
             </manifest>
@@ -74,7 +75,8 @@
     </target>
 
     <target name="create-client-jar" depends="compile,copy-resources" description="Package to java archive">
-        <jar destfile="${jar.dir}/${client-jar.name}" basedir="${target.dir}">
+        <jar destfile="${jar.dir}/${client-jar.name}.jar" basedir="${target.dir}">
+            <zipgroupfileset dir="${local.lib.dir}" includes="*.jar"/>
             <manifest>
                 <attribute name="Main-Class" value="${client-main.class}"/>
             </manifest>
@@ -82,14 +84,12 @@
     </target>
 
     <target name="run-server-jar" depends="create-server-jar" description="Run java application in java archive">
-        <java jar="${jar.dir}/${server-jar.name}" fork="true">
-            <classpath refid="libpath"/>
+        <java jar="${jar.dir}/${server-jar.name}.jar" fork="true">
         </java>
     </target>
 
     <target name="run-client-jar" depends="create-client-jar" description="Run java application in java archive">
-        <java jar="${jar.dir}/${client-jar.name}" fork="true">
-            <classpath refid="libpath"/>
+        <java jar="${jar.dir}/${client-jar.name}.jar" fork="true">
         </java>
     </target>
 
