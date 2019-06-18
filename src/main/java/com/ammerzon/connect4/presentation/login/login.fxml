@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="1080" prefWidth="1920"
+           xmlns="http://javafx.com/javafx/8.0.999-ea" fx:controller="com.ammerzon.connect4.presentation.login.LoginPresenter">
+    <HBox>
+        <Rectangle fill="WHITE" height="1080.0" width="960.0"/>
+        <Rectangle height="1080.0" width="960.0">
+            <fill>
+                <LinearGradient endX="0.59" startY="0.64">
+                    <stops>
+                        <Stop color="#38e1d6"/>
+                        <Stop color="#66eacc" offset="1.0"/>
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+    </HBox>
+    <GridPane styleClass="loginForm__container">
+        <GridPane styleClass="loginForm__card">
+            <VBox fx:id="loginVBox" prefHeight="705.0" prefWidth="536.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Text styleClass="loginForm__heading" text="Connect to the engine">
+                    <VBox.margin>
+                        <Insets left="80.0" top="15.0"/>
+                    </VBox.margin>
+                </Text>
+                <Text styleClass="loginForm__description"
+                      text="Enter the engine properties, the robot settings and an username which will be displayed during the game."
+                      wrappingWidth="290.0">
+                    <VBox.margin>
+                        <Insets left="80.0" top="10.0"/>
+                    </VBox.margin>
+                </Text>
+                <Text fx:id="gameSettingsText" text="Game settings">
+                    <VBox.margin>
+                        <Insets left="80.0" top="20.0"/>
+                    </VBox.margin>
+                </Text>
+                <JFXTextField fx:id="widthTextField" styleClass="loginForm__textfield" promptText="Width">
+                    <VBox.margin>
+                        <Insets left="80.0" right="80.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextField>
+                <JFXTextField fx:id="heightTextField" styleClass="loginForm__textfield" promptText="Height">
+                    <VBox.margin>
+                        <Insets left="80.0" right="80.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextField>
+                <Text text="User details">
+                    <VBox.margin>
+                        <Insets left="80.0" top="30.0"/>
+                    </VBox.margin>
+                </Text>
+                <JFXTextField fx:id="usernameTextField" promptText="Username" styleClass="loginForm__textfield">
+                    <VBox.margin>
+                        <Insets left="80.0" right="80.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextField>
+                <Text text="Engine details">
+                    <VBox.margin>
+                        <Insets left="80.0" top="30.0"/>
+                    </VBox.margin>
+                </Text>
+                <JFXTextField fx:id="hostTextField" promptText="IP-Address" styleClass="loginForm__textfield">
+                    <VBox.margin>
+                        <Insets left="80.0" right="80.0" top="10.0"/>
+                    </VBox.margin>
+                </JFXTextField>
+                <JFXTextField fx:id="portTextField" promptText="Port" styleClass="loginForm__textfield">
+                    <VBox.margin>
+                        <Insets left="80.0" right="80.0" top="20.0"/>
+                    </VBox.margin>
+                </JFXTextField>
+                <Text fx:id="robotSettingsText" text="Robot settings">
+                    <VBox.margin>
+                        <Insets left="80.0" top="20.0"/>
+                    </VBox.margin>
+                </Text>
+                <HBox fx:id="difficultyHBox">
+                    <Text fx:id="difficultyText" text="Difficulty">
+                        <HBox.margin>
+                            <Insets/>
+                        </HBox.margin>
+                    </Text>
+                    <JFXSlider fx:id="difficultySlider" blockIncrement="1" max="3" min="1" prefHeight="38.0"
+                               prefWidth="311.0" showTickLabels="true" showTickMarks="true"
+                               styleClass="loginForm__slider" value="1">
+                        <HBox.margin>
+                            <Insets left="10.0"/>
+                        </HBox.margin>
+                    </JFXSlider>
+                    <VBox.margin>
+                        <Insets left="80.0" top="40.0"/>
+                    </VBox.margin>
+                </HBox>
+                <HBox fx:id="timeHBox">
+                    <Text fx:id="timeText" text="Time">
+                        <HBox.margin>
+                            <Insets/>
+                        </HBox.margin>
+                    </Text>
+                    <JFXSlider fx:id="timeSlider" blockIncrement="5" max="30" min="5" prefHeight="38.0"
+                               prefWidth="313.0" showTickLabels="true" showTickMarks="true"
+                               styleClass="loginForm__slider" value="15">
+                        <HBox.margin>
+                            <Insets left="35.0"/>
+                        </HBox.margin>
+                    </JFXSlider>
+                    <VBox.margin>
+                        <Insets left="80.0" top="40.0"/>
+                    </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <JFXButton fx:id="connectButton" onMouseClicked="#connectClicked" styleClass="loginForm__button"
+                               text="CONNECT">
+                        <HBox.margin>
+                            <Insets bottom="20.0"/>
+                        </HBox.margin>
+                    </JFXButton>
+                    <VBox.margin>
+                        <Insets top="30.0"/>
+                    </VBox.margin>
+                </HBox>
+            </VBox>
+            <StackPane alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <ImageView>
+                    <StackPane.margin>
+                        <Insets left="1.0" right="-1"/>
+                    </StackPane.margin>
+                    <Image url="@../../../../../../resources/images/login_background.png"/>
+                </ImageView>
+                <ImageView>
+                    <StackPane.margin>
+                        <Insets left="1.0" right="-1"/>
+                    </StackPane.margin>
+                    <Image url="@../../../../../../resources/images/gradient_overlay.png"/>
+                </ImageView>
+                <VBox alignment="CENTER_LEFT">
+                    <Text styleClass="loginForm__title" text="Connect"/>
+                    <Text styleClass="loginForm__title" text="Four"/>
+                    <StackPane.margin>
+                        <Insets bottom="200.0" left="50.0"/>
+                    </StackPane.margin>
+                </VBox>
+            </StackPane>
+            <columnConstraints>
+                <ColumnConstraints minWidth="325.0"/>
+                <ColumnConstraints minWidth="325.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints/>
+            </rowConstraints>
+        </GridPane>
+        <columnConstraints>
+            <ColumnConstraints/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints/>
+        </rowConstraints>
+    </GridPane>
+</StackPane>

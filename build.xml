@@ -1,6 +1,6 @@
 <project name="connect4" default="compile" basedir=".">
     <!-- Specify your main class here. Omit the .class extension. -->
-    <property name="main.class" value="com.ammerzon.connect4.gui.App"/>
+    <property name="main.class" value="com.ammerzon.connect4.presentation.App"/>
     <property name="jar.name" value="${ant.project.name}"/>
 
     <property environment="env"/>

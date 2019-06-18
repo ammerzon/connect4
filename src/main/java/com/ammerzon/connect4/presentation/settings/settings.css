@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.loginForm__heading {
+    -fx-font-size: 24;
+    -fx-fill: #00000087;
+    -fx-font-family: "Roboto";
+}
+
+.loginForm__title {
+    -fx-font-size: 40;
+    -fx-fill: #ffffff;
+    -fx-font-family: "Roboto Bold";
+}
+
+.loginForm__button {
+    -jfx-button-type: RAISED;
+    -fx-background-color: #009988;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+}
+
+.loginForm__container {
+    -fx-alignment: center;
+    -fx-hgap: 60;
+}
+
+.loginForm__card {
+    -fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.4), 10.0, 0, 0.0, 1.0);
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 23;
+}
+
+.loginForm__description {
+    -fx-font-size: 14;
+    -fx-fill: #00000080;
+    -fx-font-family: "Roboto";
+    -fx-padding: 20 0 120 0;
+}
+
+.loginForm__textfield {
+    -jfx-focus-color: #18a79b;
+}
+
+.loginForm__slider > .track {
+    -fx-background-color: #dbdbdb;
+}
+
+.loginForm__slider > .thumb {
+    -fx-background-color: #009688;
+}
+
+.loginForm__slider > .colored-track {
+    -fx-background-color: #009688;
+}
+
+.loginForm__slider > .animated-thumb {
+    -fx-background-color: #009688;
+}
+
+.loginForm__slider .slider-value {
+    -fx-fill: white;
+    -fx-stroke: white;
+}

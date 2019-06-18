@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" spacing="20.0" stylesheets="highScore.css"
+      xmlns="http://javafx.com/javafx/8.0.172-ea"
+      fx:controller="com.ammerzon.connect4.presentation.highScore.HighScoreController">
+    <Label styleClass="highScore__title" text="High score">
+        <VBox.margin>
+            <Insets left="20.0" top="20.0"/>
+        </VBox.margin>
+    </Label>
+    <JFXListView fx:id="highScoreList" styleClass="highScore__list" prefWidth="600.0">
+        <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0"/>
+        </VBox.margin>
+    </JFXListView>
+</VBox>
