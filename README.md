@@ -1,4 +1,4 @@
-# connect-four
+# connect4
 
 A program to play connect four over RMI as part of a homework in SWE4UE SS19 at [FH OÖ Campus Hagenberg](https://www.fh-ooe.at/en/hagenberg-campus).
 
