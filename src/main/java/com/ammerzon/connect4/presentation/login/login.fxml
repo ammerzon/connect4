@@ -10,7 +10,8 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.*?>
 <StackPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="1080" prefWidth="1920"
-           xmlns="http://javafx.com/javafx/8.0.999-ea" fx:controller="com.ammerzon.connect4.presentation.login.LoginPresenter">
+           xmlns="http://javafx.com/javafx/8.0.999-ea"
+           fx:controller="com.ammerzon.connect4.presentation.login.LoginPresenter">
     <HBox>
         <Rectangle fill="WHITE" height="1080.0" width="960.0"/>
         <Rectangle height="1080.0" width="960.0">

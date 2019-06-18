@@ -1,12 +1,10 @@
 package com.ammerzon.connect4.robot;
 
-import com.ammerzon.connect4.presentation.board.BoardPresenter;
 import swe4.connect4.api.PlayerSide;
 import swe4.connect4.api.RemoteGameController;
 import swe4.connect4.api.RemoteGamePlayer;
 import swe4.connect4.api.RemoteGameServer;
 
-import javax.inject.Inject;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;

@@ -89,23 +89,23 @@ public class GameService {
         return time.get();
     }
 
-    public IntegerProperty timeProperty() {
-        return time;
-    }
-
     public void setTime(int time) {
         this.time.set(time);
+    }
+
+    public IntegerProperty timeProperty() {
+        return time;
     }
 
     public int getDifficulty() {
         return difficulty.get();
     }
 
-    public IntegerProperty difficultyProperty() {
-        return difficulty;
-    }
-
     public void setDifficulty(int difficulty) {
         this.difficulty.set(difficulty);
+    }
+
+    public IntegerProperty difficultyProperty() {
+        return difficulty;
     }
 }
