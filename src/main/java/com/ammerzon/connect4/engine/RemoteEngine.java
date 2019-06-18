@@ -7,7 +7,9 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -114,6 +116,8 @@ public class RemoteEngine implements RemoteGameServer, RemoteGameController {
         if (gameState != GameState.STOPPED) {
             gameState = GameState.STOPPED;
             reset();
+            setPlayer1Name();
+            setPlayer2Name();
             startGame();
         }
     }
@@ -162,6 +166,22 @@ public class RemoteEngine implements RemoteGameServer, RemoteGameController {
         }
         displayStartTurn();
         scheduleTimer();
+    }
+
+    private void setWinner(PlayerSide winner) {
+        if (winner == PlayerSide.PLAYER1) {
+            setStatus(players.get(0).name + " has won!");
+        } else if (winner == PlayerSide.PLAYER2) {
+            setStatus(players.get(1).name + " has won!");
+        }
+
+        for (RemoteGameObserver observer : observers) {
+            try {
+                observer.setWinner(winner);
+            } catch (RemoteException e) {
+                LOGGER.warning("Couldn't reset observer!");
+            }
+        }
     }
 
     private void reset() {
@@ -225,6 +245,54 @@ public class RemoteEngine implements RemoteGameServer, RemoteGameController {
     }
 
     private boolean hasPlayerWon() {
-        return false;
+        PlayerSide winner = PlayerSide.NONE;
+
+        for (int row = height - 1; row >= 0; row--) {
+            for (int col = 0; col < width; col++) {
+                PlayerSide side = board[col * height + row];
+                if (side != PlayerSide.NONE) {
+                    // Check horizontal line
+                    if (col + 3 < width &&
+                            side == board[(col + 1) * height + row] &&
+                            side == board[(col + 2) * height + row] &&
+                            side == board[(col + 3) * height + row]) {
+                        winner = side;
+                        break;
+                    }
+                    if (row + 3 < height) {
+                        // Check vertical line
+                        if (side == board[col * height + (row + 1)] &&
+                                side == board[col * height + (row + 2)] &&
+                                side == board[col * height + (row + 3)]) {
+                            winner = side;
+                            break;
+                        }
+                        // Check backslash (up and left) line
+                        if (col - 3 >= 0 &&
+                                side == board[(col - 1) * height + (row + 1)] &&
+                                side == board[(col - 2) * height + (row + 2)] &&
+                                side == board[(col - 3) * height + (row + 3)]) {
+                            winner = side;
+                            break;
+                        }
+                        // Check slash (up and right) line
+                        if (col + 3 < width &&
+                                side == board[(col + 1) * height + (row + 1)] &&
+                                side == board[(col + 2) * height + (row + 2)] &&
+                                side == board[(col + 3) * height + (row + 3)]) {
+                            winner = side;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (winner != PlayerSide.NONE) {
+            setWinner(winner);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
