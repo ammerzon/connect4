@@ -83,14 +83,13 @@ public class BoardPresenter extends BasePresenter implements Initializable {
             if (gameService.getGameMode() == GameMode.humanVsRobot || gameService.getGameMode() == GameMode.robotVsRobot) {
                 new GameRobot("R2-D2", serviceUrl, gameService.getTime(), gameService.getDifficulty());
             }
-            if (gameService.getGameMode() == GameMode.robotVsRobot) {
-                new GameRobot("Eve", serviceUrl, gameService.getTime(), gameService.getDifficulty());
-            }
         } catch (RemoteException e) {
             LOGGER.info("Couldn't connect to game server!");
         }
 
         fieldGridPane.disableProperty().bind(hasTurn.not());
+        stopButton.disableProperty().setValue(true);
+        restartButton.disableProperty().setValue(true);
     }
 
     @FXML
@@ -198,6 +197,9 @@ public class BoardPresenter extends BasePresenter implements Initializable {
 
         @Override
         public void displayStartTurn(PlayerSide playerSide, int countdownInSeconds) throws RemoteException {
+            playButton.disableProperty().setValue(true);
+            stopButton.disableProperty().setValue(false);
+            restartButton.disableProperty().setValue(false);
             switch (playerSide) {
                 case NONE:
                     Platform.runLater(() -> currentPlayerLabel.setText(NONE_PLAYERSIDE));
@@ -233,6 +235,9 @@ public class BoardPresenter extends BasePresenter implements Initializable {
         public void reset() throws RemoteException {
             player1Name = null;
             player2Name = null;
+            playButton.disableProperty().setValue(false);
+            stopButton.disableProperty().setValue(true);
+            restartButton.disableProperty().setValue(true);
         }
 
         @Override
@@ -285,7 +290,9 @@ public class BoardPresenter extends BasePresenter implements Initializable {
                     break;
             }
 
-            showDialog("Game ended!", message);
+            String finalMessage = message;
+            Platform.runLater(() -> showDialog("Game ended!", finalMessage));
+            timeline.stop();
         }
 
         @Override

@@ -10,7 +10,7 @@
           fx:controller="com.ammerzon.connect4.presentation.gameMode.GameModePresenter">
     <VBox styleClass="card" GridPane.columnIndex="0" GridPane.rowIndex="0">
         <ImageView pickOnBounds="true">
-            <Image url="@../../../../../../resources/images/humanVsHuman.png"/>
+            <Image url="@../../images/humanVsHuman.png"/>
         </ImageView>
         <Text styleClass="card__heading" text="Human vs. Human">
             <VBox.margin>
@@ -30,7 +30,7 @@
     </VBox>
     <VBox styleClass="card" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <ImageView pickOnBounds="true">
-            <Image url="@../../../../../../resources/images/humanVsRobot.png"/>
+            <Image url="@../../images/humanVsRobot.png"/>
         </ImageView>
         <Text styleClass="card__heading" text="Human vs. Robot">
             <VBox.margin>
@@ -50,7 +50,7 @@
     </VBox>
     <VBox styleClass="card" GridPane.columnIndex="2" GridPane.rowIndex="0">
         <ImageView pickOnBounds="true">
-            <Image url="@../../../../../../resources/images/robotVsRobot.png"/>
+            <Image url="@../../images/robotVsRobot.png"/>
         </ImageView>
         <Text styleClass="card__heading" text="Robot vs. Robot">
             <VBox.margin>
@@ -70,7 +70,7 @@
     </VBox>
     <VBox styleClass="card" GridPane.columnIndex="3" GridPane.rowIndex="0">
         <ImageView pickOnBounds="true">
-            <Image url="@../../../../../../resources/images/viewer.png"/>
+            <Image url="@../../images/viewer.png"/>
         </ImageView>
         <Text styleClass="card__heading" text="Watch">
             <VBox.margin>

@@ -39,7 +39,7 @@
             </fill>
         </Rectangle>
         <ImageView fitHeight="30.0" fitWidth="900.0" pickOnBounds="true" GridPane.rowIndex="3">
-            <Image url="@../../../../../../resources/images/stand.png"/>
+            <Image url="@../../images/stand.png"/>
             <GridPane.margin>
                 <Insets left="8.0" top="-5.0"/>
             </GridPane.margin>
@@ -62,7 +62,7 @@
             <JFXButton fx:id="playButton" onAction="#playButtonClicked" styleClass="gameArea__playButton" text=" ">
             </JFXButton>
             <ImageView>
-                <Image url="@../../../../../../resources/images/play.png"/>
+                <Image url="@../../images/play.png"/>
             </ImageView>
         </StackPane>
 
@@ -70,7 +70,7 @@
             <JFXButton fx:id="stopButton" onAction="#stopButtonClicked" styleClass="gameArea__stopButton" text=" ">
             </JFXButton>
             <ImageView>
-                <Image url="@../../../../../../resources/images/stop.png"/>
+                <Image url="@../../images/stop.png"/>
             </ImageView>
         </StackPane>
 
@@ -79,7 +79,7 @@
                        text=" ">
             </JFXButton>
             <ImageView>
-                <Image url="@../../../../../../resources/images/restart.png"/>
+                <Image url="@../../images/restart.png"/>
             </ImageView>
         </StackPane>
 
@@ -87,7 +87,7 @@
             <JFXButton onAction="#statsButtonClicked" styleClass="gameArea__statsButton" text=" ">
             </JFXButton>
             <ImageView>
-                <Image url="@../../../../../../resources/images/stats.png"/>
+                <Image url="@../../images/stats.png"/>
             </ImageView>
         </StackPane>
 

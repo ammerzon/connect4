@@ -1,7 +1,9 @@
 <project name="connect4" default="compile" basedir=".">
     <!-- Specify your main class here. Omit the .class extension. -->
-    <property name="main.class" value="com.ammerzon.connect4.presentation.App"/>
-    <property name="jar.name" value="${ant.project.name}"/>
+    <property name="client-main.class" value="com.ammerzon.connect4.presentation.App"/>
+    <property name="server-main.class" value="com.ammerzon.connect4.engine.RemoteEngine"/>
+    <property name="client-jar.name" value="client-${ant.project.name}"/>
+    <property name="server-jar.name" value="server-${ant.project.name}"/>
 
     <property environment="env"/>
     <property name="src.dir" value="${basedir}/src"/>
@@ -38,28 +40,55 @@
         </javac>
     </target>
 
-    <target name="run" depends="compile,copy-resources" description="Run java application">
-        <java classname="${main.class}" fork="true">
+    <target name="server-run" depends="compile,copy-resources" description="Run java application">
+        <java classname="${server-main.class}" fork="true">
+            <classpath refid="classpath"/>
+        </java>
+    </target>
+
+    <target name="client-run" depends="compile,copy-resources" description="Run java application">
+        <java classname="${client-main.class}" fork="true">
             <classpath refid="classpath"/>
         </java>
     </target>
 
     <target name="copy-resources" description="Copy resource files">
         <copy todir="${target.dir}">
+            <fileset dir="${src.dir}/main/java">
+                <include name="**/*.png"/>
+                <include name="**/*.fxml"/>
+                <include name="**/*.css"/>
+            </fileset>
+        </copy>
+        <copy todir="${target.dir}/resources">
             <fileset dir="${src.dir}/main/resources"/>
         </copy>
     </target>
 
-    <target name="create-jar" depends="compile,copy-resources" description="Package to java archive">
-        <jar destfile="${jar.dir}/${jar.name}" basedir="${target.dir}">
+    <target name="create-server-jar" depends="compile,copy-resources" description="Package to java archive">
+        <jar destfile="${jar.dir}/${server-jar.name}" basedir="${target.dir}">
             <manifest>
-                <attribute name="Main-Class" value="${main.class}"/>
+                <attribute name="Main-Class" value="${server-main.class}"/>
             </manifest>
         </jar>
     </target>
 
-    <target name="run-jar" depends="create-jar" description="Run java application in java archive">
-        <java jar="${jar.dir}/${jar.name}" fork="true">
+    <target name="create-client-jar" depends="compile,copy-resources" description="Package to java archive">
+        <jar destfile="${jar.dir}/${client-jar.name}" basedir="${target.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${client-main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run-server-jar" depends="create-server-jar" description="Run java application in java archive">
+        <java jar="${jar.dir}/${server-jar.name}" fork="true">
+            <classpath refid="libpath"/>
+        </java>
+    </target>
+
+    <target name="run-client-jar" depends="create-client-jar" description="Run java application in java archive">
+        <java jar="${jar.dir}/${client-jar.name}" fork="true">
             <classpath refid="libpath"/>
         </java>
     </target>

@@ -21,6 +21,6 @@ configure<JavaPluginConvention> {
 }
 
 sourceSets["main"].resources {
-    srcDir("src/main/java").includes.addAll(listOf("**/*.fxml", "**/*.css", "**/*.properties"))
+    srcDir("src/main/java").includes.addAll(listOf("**/*.fxml", "**/*.css", "**/*.properties", "**/*.png"))
     srcDir("src/main/resources").includes.addAll(listOf("**/*.*"))
 }

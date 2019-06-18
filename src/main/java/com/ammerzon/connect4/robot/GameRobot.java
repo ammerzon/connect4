@@ -33,6 +33,8 @@ public class GameRobot extends UnicastRemoteObject implements RemoteGamePlayer {
             RemoteGameServer gameServer = (RemoteGameServer) Naming.lookup(serviceURL);
             gameServer.registerObserver(this);
             gameController = gameServer.registerPlayer(this, name);
+            gameController.setPreferredGameSize(6, 6);
+            gameController.startGame();
         } catch (RemoteException | NotBoundException | MalformedURLException e) {
             LOGGER.info("Couldn't connect robot to server!");
         }

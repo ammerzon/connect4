@@ -135,13 +135,13 @@
                     <StackPane.margin>
                         <Insets left="1.0" right="-1"/>
                     </StackPane.margin>
-                    <Image url="@../../../../../../resources/images/login_background.png"/>
+                    <Image url="@../../images/login_background.png"/>
                 </ImageView>
                 <ImageView>
                     <StackPane.margin>
                         <Insets left="1.0" right="-1"/>
                     </StackPane.margin>
-                    <Image url="@../../../../../../resources/images/gradient_overlay.png"/>
+                    <Image url="@../../images/gradient_overlay.png"/>
                 </ImageView>
                 <VBox alignment="CENTER_LEFT">
                     <Text styleClass="loginForm__title" text="Connect"/>

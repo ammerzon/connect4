@@ -77,21 +77,24 @@ public class LoginPresenter extends BasePresenter implements Initializable {
         if (gameMode == GameMode.watch) {
             loginVBox.getChildren().remove(gameSettingsText);
             loginVBox.getChildren().remove(widthTextField);
+            loginVBox.getChildren().remove(heightTextField);
             connectButton.disableProperty().bind(usernameFieldValidProperty.not());
         }
 
         setSizeTextFieldValidators();
         setUsernameTextFieldValidators();
-        connectButton.disableProperty().bind(sizeTextFieldValidProperty.and(usernameFieldValidProperty).not());
-        gameService.hostProperty().bind(hostTextField.textProperty());
-        gameService.usernameProperty().bind(usernameTextField.textProperty());
+        if (gameMode != GameMode.watch) {
+            connectButton.disableProperty().bind(sizeTextFieldValidProperty.and(usernameFieldValidProperty).not());
+        }
     }
 
     @FXML
     public void connectClicked(MouseEvent mouseEvent) {
         gameService.setWidth(Integer.parseInt(widthTextField.getText()));
         gameService.setHeight(Integer.parseInt(heightTextField.getText()));
+        gameService.setUsername(usernameTextField.getText());
         gameService.setPort(Integer.parseInt(portTextField.getText()));
+        gameService.setHost(hostTextField.getText());
         GameMode gameMode = gameService.getGameMode();
         if (gameMode == GameMode.robotVsRobot || gameMode == GameMode.humanVsRobot) {
             gameService.setTime((int) timeSlider.getValue());
@@ -101,7 +104,7 @@ public class LoginPresenter extends BasePresenter implements Initializable {
     }
 
     private void setUsernameTextFieldValidators() {
-        ImageView warnIcon = new ImageView("/images/warning.png");
+        ImageView warnIcon = new ImageView("/com/ammerzon/connect4/images/warning.png");
 
         RequiredFieldValidator requiredFieldValidator = new RequiredFieldValidator("Username required!");
         requiredFieldValidator.setIcon(warnIcon);
@@ -115,7 +118,7 @@ public class LoginPresenter extends BasePresenter implements Initializable {
     }
 
     private void setSizeTextFieldValidators() {
-        ImageView warnIcon = new ImageView("/images/warning.png");
+        ImageView warnIcon = new ImageView("/com/ammerzon/connect4/images/warning.png");
 
         RequiredFieldValidator requiredFieldValidator = new RequiredFieldValidator("Size required!");
         requiredFieldValidator.setIcon(warnIcon);

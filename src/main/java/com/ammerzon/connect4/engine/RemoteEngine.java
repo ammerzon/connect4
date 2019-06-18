@@ -65,6 +65,7 @@ public class RemoteEngine implements RemoteGameServer, RemoteGameController {
             setPlayer1Name();
         } else if (players.size() == 2) {
             setStatus(name + " connected");
+            setPlayer1Name();
             setPlayer2Name();
         }
 
